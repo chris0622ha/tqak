@@ -130,16 +130,16 @@ function AppCard({ name, tag, tagColor, url, description, stats, features, accen
 
   return (
     <div ref={ref} style={{
-      display:"grid",
-      gridTemplateColumns: side==="left" ? "1fr 1fr" : "1fr 1fr",
-      gap:40, alignItems:"center",
+      display:"flex",
+      flexDirection:"column",
+      gap:40,
       padding:"80px 0",
       opacity: visible ? 1 : 0,
       transform: visible ? "translateY(0)" : "translateY(48px)",
       transition:"opacity 0.8s ease, transform 0.8s ease",
     }}>
       {/* Text side */}
-      <div style={{ order: side==="left" ? 0 : 1 }}>
+      <div>
         {/* Tag pill */}
         <div style={{ display:"inline-flex", alignItems:"center", gap:8, marginBottom:20 }}>
           <span style={{
@@ -195,7 +195,7 @@ function AppCard({ name, tag, tagColor, url, description, stats, features, accen
       </div>
 
       {/* Preview side */}
-      <div style={{ order: side==="left" ? 1 : 0, position:"relative" }}>
+      <div style={{ position:"relative" }}>
         {/* Glow behind frame */}
         <div style={{
           position:"absolute", inset:-24, borderRadius:24,
@@ -207,7 +207,7 @@ function AppCard({ name, tag, tagColor, url, description, stats, features, accen
           borderRadius:16, overflow:"hidden", border:`1px solid ${accentColor}33`,
           boxShadow:`0 0 0 1px ${accentColor}22, 0 24px 80px #00000088`,
           background:"#0d0d1a", position:"relative",
-          aspectRatio:"16/10",
+          height:520,
         }}>
           {/* Browser chrome bar */}
           <div style={{
@@ -292,9 +292,9 @@ function AppCard({ name, tag, tagColor, url, description, stats, features, accen
 const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["SVG tab icons: joystick, map path, calendar grid, keyboard","Section banners with Jump here scroll, 11 sections across 165 levels","Section unlock confetti — 120 pieces + animated popup"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["Redesigned levels 61–75 icons: runner, DNA helix, terminal window, vinyl record, campfire, hurricane, bomb","Section banners insert into level map above each section's first level","Free Run section (66–99) with no WPM targets"] },
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 18 2026", items:["Google login wired up — shows display name in nav","Firebase Firestore sessions per UID","Personal best tracking, profile modal, leaderboard by UID"] },
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 18 2026", items:["Google login — shows display name in nav","Firebase Firestore sessions per UID saved","Personal best tracking, profile modal, leaderboard by UID"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 15 2026", items:["165-level progression system","Multi-profile support (Netflix-style)","Keys currency, star ratings, streak tracking"] },
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 13 2026", items:["38 games across 10 categories","Daily challenge with global leaderboard","Admin panel, broadcast system"] },
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 13 2026", items:["38 games across 10 categories","Daily challenge with global leaderboard","Streak multipliers and score tracking"] },
 ];
 
 // ── Main page ──────────────────────────────────────────────────────────────
@@ -377,7 +377,7 @@ export default function Home() {
 
           <div style={{ marginBottom:20, display:"inline-flex", alignItems:"center", gap:8, background:"#1a1a2e", border:"1px solid #2a2a4e", borderRadius:99, padding:"6px 16px" }}>
             <div style={{ width:7, height:7, borderRadius:"50%", background:"#34d399", boxShadow:"0 0 8px #34d399" }}/>
-            <span style={{ fontSize:12, color:"#888", fontWeight:600 }}>Two apps, one mission — get better at the keyboard</span>
+            <span style={{ fontSize:12, color:"#888", fontWeight:600 }}>Two web apps by chris0622ha</span>
           </div>
 
           <h1 style={{
@@ -387,14 +387,14 @@ export default function Home() {
             backgroundClip:"text", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
             backgroundSize:"200% 200%", animation:"gradientShift 6s ease infinite",
           }}>
-            Build your<br/>keyboard skills
+            Build your<br/>best skills
           </h1>
 
           <p style={{ fontSize:"clamp(15px,2vw,20px)", color:"#888", maxWidth:560, margin:"0 0 12px", lineHeight:1.6 }}>
-            Two web apps — one for typing mastery, one for trivia speed.
+            Two web apps — one for typing mastery, one for trivia.
           </p>
           <div style={{ fontSize:"clamp(16px,2.5vw,22px)", color:"#bbb", fontFamily:"'JetBrains Mono',monospace", fontWeight:700, minHeight:32 }}>
-            <TypeWriter texts={["165 levels of typing","38 trivia games","Track WPM and accuracy","Compete daily","Build muscle memory"]} />
+            <TypeWriter texts={["165 levels of typing","38 trivia games","Track WPM and accuracy","One-tap trivia battles","Compete on leaderboards"]} />
           </div>
 
           <div style={{ display:"flex", gap:14, marginTop:40, flexWrap:"wrap", justifyContent:"center" }}>
@@ -482,11 +482,11 @@ export default function Home() {
             url="https://trivquic.vercel.app"
             accentColor="#f59e0b"
             side="right"
-            description="A one-tap trivia app with 38 games across 10 categories. Daily challenges, global leaderboards, personal bests — built for speed and competition."
+            description="A one-tap trivia app with 38 games across 10 categories. Answer fast, climb the leaderboard, and take on daily challenges — built for speed and competition."
             stats={[
               { value:38, label:"Games" },
               { value:10, label:"Categories" },
-              { value:1, suffix:"", label:"Tap to answer" },
+              { value:1, suffix:" tap", label:"to answer" },
             ]}
             features={[
               "38 trivia games across Science, History, Pop Culture, Geography and more",
@@ -494,7 +494,7 @@ export default function Home() {
               "Personal best tracking and profile page",
               "Daily challenge — one new trivia set every day",
               "Global leaderboard by username",
-              "Admin broadcast system for announcements",
+              "Streak multipliers and score tracking",
             ]}
           />
         </section>
