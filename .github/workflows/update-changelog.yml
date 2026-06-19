@@ -19,17 +19,26 @@ jobs:
         env:
           APP: ${{ github.event.client_payload.app }}
           COMMIT_MSG: ${{ github.event.client_payload.message }}
+          COMMIT_BODY: ${{ github.event.client_payload.body }}
           COMMIT_SHA: ${{ github.event.client_payload.sha }}
         run: |
           node << 'JS'
           const fs = require('fs');
           const app = process.env.APP || 'Unknown';
-          const msg = (process.env.COMMIT_MSG || '').replace(/"/g, "'");
           const sha = (process.env.COMMIT_SHA || '').slice(0, 7);
           const date = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
           const tag = app === 'AccuratKey' ? 'accuratkey' : 'trivquic';
           const color = app === 'AccuratKey' ? '#7c6af7' : '#f59e0b';
-          const newEntry = `  { app:"${app}", tag:"${tag}", color:"${color}", date:"${date}", items:["${msg} (${sha})"] },\n`;
+
+          // Prefer a "changelog: ..." line from the commit body (plain-English,
+          // written for end users) over the raw technical commit subject.
+          // Falls back to the subject line if no changelog: line was written.
+          const body = process.env.COMMIT_BODY || '';
+          const subject = (process.env.COMMIT_MSG || '').replace(/"/g, "'");
+          const clMatch = body.match(/changelog:\s*(.+)/i);
+          const msg = (clMatch ? clMatch[1].trim() : subject).replace(/"/g, "'");
+
+          const newEntry = `  { app:"${app}", tag:"${tag}", color:"${color}", date:"${date}", items:["${msg}"] },\n`;
 
           let content = fs.readFileSync('app/page.js', 'utf8');
           content = content.replace('const CHANGELOG = [\n', `const CHANGELOG = [\n${newEntry}`);
