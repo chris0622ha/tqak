@@ -443,6 +443,7 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Deleting a profile now properly removes its full history instead of leaving it behind"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["COPPA: stop loading every user account by default in the admin panel - requires an actual search now"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["COPPA: full sweep of every admin panel for unjustified broad data access"] },
