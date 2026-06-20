@@ -443,6 +443,8 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Replace Google Translate widget with real, hand-maintained translations (English, Korean, Spanish)"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed outdated links in the admin panel's Quick Links section"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed a difficulty label showing as raw text, hardened the Test tab against a rare crash from malformed saved word lists"] },
@@ -469,10 +471,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fix the actual cause of buttons bouncing to loading screen then back to level map"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Closed an unauthenticated debug endpoint"] },
   
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed a way to view other players' profiles that wasn't properly restricted for younger sessions"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Full source sweep: remove dead unguarded code that had no isProfileRestricted check"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Extend automated COPPA cleanup to daily-leaderboard entries for fully-restricted accounts"] }
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed a way to view other players' profiles that wasn't properly restricted for younger sessions"] }
 ];
 
 // ── Shared patterns ───────────────────────────────────────────────────────
