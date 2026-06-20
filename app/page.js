@@ -443,6 +443,8 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 20, 2026", items:["Fixed a way to view other players' profiles that wasn't properly restricted for younger sessions"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Full source sweep: remove dead unguarded code that had no isProfileRestricted check"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Extend automated COPPA cleanup to daily-leaderboard entries for fully-restricted accounts"] },
@@ -465,8 +467,7 @@ const CHANGELOG = [
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Closed more privacy gaps for child profiles - challenges, custom word lists, and theme shop purchases now stay local instead of syncing to our servers"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Added a Children's Privacy page"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Extended child-profile privacy protections to friend requests, photo uploads, and session history"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed several admin panel bugs including maintenance mode locking out the owner, and feedback replies silently failing"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Extended child-profile privacy protections to friend requests, photo uploads, and session history"] }
 ];
 
 // ── Shared patterns ───────────────────────────────────────────────────────
