@@ -443,6 +443,8 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Add 5 new levels (166-170), retire over-the-top names from levels 130-165 in favor of calmer ones, s"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed Speed Burst generating garbled single-character text instead of real words, and cleaned up an abbreviated difficulty value used throughout the games"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Revert temporary Google account picker forcing - back to normal auto-select behavior"] },
@@ -469,10 +471,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Removed ghost mode (the replay cursor feature)"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed several abbreviated/raw-text labels across the app"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Most screens now use the extra space on desktop instead of staying narrow"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Add a global error boundary so crashes show the actual error instead of silently unmounting back to "] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fix the actual cause of buttons bouncing to loading screen then back to level map"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Most screens now use the extra space on desktop instead of staying narrow"] }
 ];
 
 // ── Shared patterns ───────────────────────────────────────────────────────
