@@ -443,6 +443,7 @@ function TQAssets() {
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Added privacy protections for child profiles — progress now saves locally instead of to our servers, and child profiles never appear on public pages or leaderboards"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["Custom SVG icons for all 165 levels — 90 new icons for levels 76-165","Free Run, Century Club, Endurance, Literature, Machine Mode, Legend Tier icon sets"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 18 2026", items:["SVG tab icons: joystick, map path, calendar grid, keyboard","Section banners with Jump here scroll, 11 sections across 165 levels","Section unlock confetti — 120 pieces + animated popup"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 18 2026", items:["Google login — shows display name in nav","Firebase Firestore sessions per UID saved","Personal best tracking, profile modal, leaderboard by UID"] },
