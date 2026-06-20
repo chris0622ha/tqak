@@ -1,6 +1,76 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 
+// Owner-only page password gate. The password itself is never stored in the
+// client bundle in plaintext — only its SHA-256 hash is compared against,
+// using the browser's built-in crypto.subtle (no extra dependency needed).
+// This isn't bulletproof against someone determined to read the JS bundle
+// and brute-force the hash, but it stops casual discovery of an unlisted
+// "don't enter" URL, which is the actual threat model here.
+const OWNER_PASSWORD_HASH = "747e145f7c86c5d32940557d0056491c7103bf46b847fad1260291f35efd709d";
+
+async function sha256Hex(text) {
+  const data = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function OwnerPasswordGate({ children }) {
+  const [unlocked, setUnlocked] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState("");
+  const [checking, setChecking] = useState(false);
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("owner_page_unlocked") === "1") setUnlocked(true);
+    } catch {}
+    setChecked(true);
+  }, []);
+
+  const tryUnlock = async () => {
+    setChecking(true);
+    setError("");
+    const hash = await sha256Hex(input);
+    if (hash === OWNER_PASSWORD_HASH) {
+      try { sessionStorage.setItem("owner_page_unlocked", "1"); } catch {}
+      setUnlocked(true);
+    } else {
+      setError("Wrong password.");
+    }
+    setChecking(false);
+  };
+
+  if (!checked) return null;
+  if (!unlocked) {
+    return (
+      <div style={{ minHeight:"100vh", background:"#08080f", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:24, fontFamily:"'JetBrains Mono',monospace" }}>
+        <div style={{ fontSize:40, marginBottom:16 }}>🔒</div>
+        <div style={{ color:"#fff", fontSize:14, fontWeight:700, marginBottom:16 }}>Owner only — password required</div>
+        <input
+          type="password"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && tryUnlock()}
+          placeholder="Password"
+          autoFocus
+          style={{ background:"#13131f", border:"1px solid #2a2a3e", borderRadius:10, color:"#fff", fontSize:14, padding:"12px 16px", outline:"none", minWidth:240, textAlign:"center", marginBottom:10, fontFamily:"inherit" }}
+        />
+        <button
+          onClick={tryUnlock}
+          disabled={checking || !input}
+          style={{ background:"#7c6af7", border:"none", borderRadius:10, color:"#fff", fontSize:13, fontWeight:700, padding:"10px 24px", cursor:"pointer", opacity:(checking || !input) ? 0.6 : 1 }}
+        >
+          {checking ? "Checking..." : "Unlock"}
+        </button>
+        {error && <div style={{ color:"#ef4444", fontSize:12, marginTop:10 }}>{error}</div>}
+      </div>
+    );
+  }
+  return children;
+}
+
 // ─── ACCURATKEY: All 11 sections (from source) ────────────────────────────
 const AK_SECTIONS = [
   { firstId:1,   label:"Foundations",     subtitle:"Home row, core keys, first speed targets",           color:"#10b981", icon:"F" },
@@ -172,7 +242,7 @@ function Divider({ label, color }) {
 }
 
 // ─── Main page ────────────────────────────────────────────────────────────
-export default function OwnerPage() {
+function OwnerPageContent() {
   const [confetti, setConfetti] = useState(null);
   const [activeTab, setActiveTab] = useState("map");
   const [activeEffect, setActiveEffect] = useState(null);
@@ -622,5 +692,13 @@ export default function OwnerPage() {
       </div>
 
     </div>
+  );
+}
+
+export default function OwnerPage() {
+  return (
+    <OwnerPasswordGate>
+      <OwnerPageContent />
+    </OwnerPasswordGate>
   );
 }
