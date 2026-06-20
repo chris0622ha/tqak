@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
 import LevelIconGallery from "../LevelIconGallery";
+import { KKey as RealKKey } from "../KKeyIcon";
 
 // Password gate for this page now happens server-side in middleware.ts —
 // the page itself never renders unless the request already passed that
@@ -103,17 +104,6 @@ function Confetti({ sectionName, onDone }) {
         }}/>
       ))}
     </div>
-  );
-}
-
-// ─── AccuratKey KKey icon (from source) ───────────────────────────────────
-function KKey({ size=22, color="#7c6af7" }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <rect x="2" y="2" width="20" height="20" rx="4" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5"/>
-      <rect x="3" y="18" width="18" height="3" rx="1.5" fill={color} opacity="0.3"/>
-      <path d="M8 7v10M8 12l6-5M8 12l6 5" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
   );
 }
 
@@ -255,19 +245,15 @@ function OwnerPageContent() {
         <LevelIconGallery />
       </div>
 
-      {/* KKey icon */}
+      {/* KKey icon — the REAL component from AccuratKey, not a recreation */}
       <div style={{marginBottom:32}}>
-        <div style={{fontSize:11,color:"#555",marginBottom:10,letterSpacing:1}}>KKey icon — sizes & brand colors</div>
+        <div style={{fontSize:11,color:"#555",marginBottom:10,letterSpacing:1}}>KKey icon (Keys currency) — sizes</div>
         <div style={{display:"flex",gap:20,alignItems:"flex-end",flexWrap:"wrap"}}>
           {[14,20,28,40,56].map(s=>(
             <div key={s} style={{textAlign:"center"}}>
-              <KKey size={s} color="#7c6af7"/>
+              <RealKKey size={s}/>
               <div style={{fontSize:9,color:"#444",marginTop:4}}>{s}px</div>
             </div>
-          ))}
-          <div style={{width:1,height:40,background:"#1e1e30"}}/>
-          {["#7c6af7","#34d399","#f59e0b","#ef4444","#06b6d4","#ec4899"].map(c=>(
-            <KKey key={c} size={28} color={c}/>
           ))}
         </div>
       </div>
@@ -431,7 +417,7 @@ function OwnerPageContent() {
           {/* floating icon */}
           <div style={{textAlign:"center"}}>
             <div style={{animation:"float 3s ease-in-out infinite",marginBottom:6,display:"inline-block"}}>
-              <KKey size={32} color="#7c6af7"/>
+              <RealKKey size={32}/>
             </div>
             <div style={{fontSize:10,color:"#444"}}>float</div>
           </div>
