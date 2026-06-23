@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 23, 2026", items:["Rebuild Brick Breaker with a real ball/paddle/collision mechanic"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 22, 2026", items:["Make Tug of War actually make sense: real opponent, real win/loss condition, real multiplayer"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 22, 2026", items:["Extend the icon/level sync automation to also sync section banner data (names, subtitles, colors) - "] },
