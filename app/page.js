@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Fixed the Shop button doing nothing (was navigating to a dead URL instead of opening the theme shop)"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Fix daily challenge tips screen showing 'Level 1: Home Row Hero' instead of actual daily challenge c"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Rhyme Time no longer shows you the answers"] },
