@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Fix daily challenge tips screen showing 'Level 1: Home Row Hero' instead of actual daily challenge c"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Rhyme Time no longer shows you the answers"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Remove the entire Chill category (Zen Mode, Typewriter Story, Typing Journal, Poetry Mode, Quotes, H"] },
@@ -265,10 +267,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Fixed a difficulty label showing as raw text, hardened the Test tab against a rare crash from malformed saved word lists"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Closed more ways app state and shop purchases could be tampered with"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Close real level-lock and game-availability bypass paths"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Remove Spelling Bee entirely - text-to-speech quality had no good free/no-account fix, decided to re"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Spelling Bee now tries to use a better-sounding voice and warns you if audio might not be playing"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Close real level-lock and game-availability bypass paths"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
