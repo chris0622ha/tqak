@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 24, 2026", items:["Remove the entire Chill category (Zen Mode, Typewriter Story, Typing Journal, Poetry Mode, Quotes, H"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 23, 2026", items:["Rebuild Brick Breaker with a real ball/paddle/collision mechanic"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 22, 2026", items:["Make Tug of War actually make sense: real opponent, real win/loss condition, real multiplayer"] },
@@ -265,10 +267,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Close real level-lock and game-availability bypass paths"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Remove Spelling Bee entirely - text-to-speech quality had no good free/no-account fix, decided to re"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Spelling Bee now tries to use a better-sounding voice and warns you if audio might not be playing"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Google sign-in now always shows the account picker so you can choose which account to use"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Add accurate error message for Google/GitHub sign-in failing in private/incognito browsing"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 20, 2026", items:["Spelling Bee now tries to use a better-sounding voice and warns you if audio might not be playing"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
