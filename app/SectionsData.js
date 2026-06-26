@@ -10,4 +10,5 @@ export const ALL_SECTIONS = [
   {firstId:131,label:'Literature',subtitle:'Philosophy, scripture, Shakespeare, US history',color:'#fbbf24',icon:'L'},
   {firstId:146,label:'Machine Mode',subtitle:'Finger fury, code marathons, length-based gauntlets',color:'#f97316',icon:'M'},
   {firstId:156,label:'Legend Tier',subtitle:'The final stretch — nine crowns and one last boss',color:'#dc2626',icon:'X'},
+  {firstId:171,label:'Speed Surge II',subtitle:'Beyond the ending — pure velocity training',color:'#fbbf24',icon:'S'},
 ];
