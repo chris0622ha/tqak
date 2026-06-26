@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Restore the REAL final version of ShopPage.jsx (660 lines, not the 389-line first draft I wrongly us"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Restore the real shop page - I deleted it by mistake earlier this session"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Add Word Bomb - new game with a visible countdown fuse, defuse by typing the word exactly before tim"] },
