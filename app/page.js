@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Freestyle - genuinely open-ended creative writing, validated against the real rhyme dictionary"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Wildcard Words - the randomness lives in the typing task itself"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Memory Edit - a genuinely different memory mechanic"] },
