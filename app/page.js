@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed sound purchases silently failing - patchProfile is not defined"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed Roulette: stale game list and fake spin animation"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed crash in admin analytics tab - failStats and failStatsLoading were used throughout via setFailSt"] },
