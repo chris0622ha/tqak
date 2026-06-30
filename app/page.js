@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed /games/{id} 404ing for new games, and add missing /play routes for all games"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed sound purchases silently failing - patchProfile is not defined"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed Roulette: stale game list and fake spin animation"] },
@@ -255,8 +257,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Mini-games now have proper back-button support between the menu, settings, and gameplay"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Fixed the back button skipping past open menus like Friends and Challenges"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Restored the full Shop (Themes, Sounds, and Fonts) after an earlier accidental removal"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Added Word Bomb, a new game where you defuse a bomb before its fuse runs out"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Removed the Stars rating from the level-completion certificate"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Added Word Bomb, a new game where you defuse a bomb before its fuse runs out"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
