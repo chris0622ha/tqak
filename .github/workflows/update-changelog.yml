@@ -30,38 +30,34 @@ jobs:
           const tag = app === 'AccuratKey' ? 'accuratkey' : 'trivquic';
           const color = app === 'AccuratKey' ? '#7c6af7' : '#f59e0b';
 
-          // Prefer a "changelog: ..." line from the commit body (plain-English,
-          // written for end users) over the raw technical commit subject.
-          // Falls back to the subject line if no changelog: line was written.
+          // The changelog: line is already written in proper customer-facing
+          // language by the committer - trust it directly rather than trying
+          // to rewrite it, which was mangling perfectly good entries.
           const body = process.env.COMMIT_BODY || '';
           const subject = (process.env.COMMIT_MSG || '').replace(/"/g, "'");
           const clMatch = body.match(/changelog:\s*(.+)/i);
-          let msg = (clMatch ? clMatch[1].trim() : subject).replace(/"/g, "'");
+          let msg = (clMatch ? clMatch[1].trim() : subject).replace(/"/g, "'").replace(/'/g, "'");
 
-          // Normalize tone for an actual customer-facing changelog, since
-          // these were being copied verbatim from commit messages - which
-          // read like internal notes-to-self ("Fix...", "Add...", "Make
-          // the icon-sync automation also cover...") rather than release
-          // notes. Strip leading first-person imperative verbs into past
-          // tense, and trim overly dramatic internal framing.
+          // Only apply minimal normalization - capitalize first letter,
+          // ensure it doesn't start with a raw verb like "Fix" (imperative)
+          // vs "Fixed" (past tense). Don't cut at sentence boundaries since
+          // changelog lines often don't have terminal punctuation.
           msg = msg
-            .replace(/^(Fix|Fixed)\b\s*/i, 'Fixed ')
-            .replace(/^(Add|Added)\b\s*/i, 'Added ')
-            .replace(/^(Remove|Removed)\b\s*/i, 'Removed ')
-            .replace(/^(Update|Updated)\b\s*/i, 'Updated ')
-            .replace(/^(Build|Built)\b\s*/i, 'Added ')
-            .replace(/^(Make|Made)\b\s*/i, 'Improved ')
-            .replace(/^(Rebuild|Rebuilt)\b\s*/i, 'Improved ')
-            .replace(/^(Extend|Extended)\b\s*/i, 'Improved ')
-            .replace(/^(Restore|Restored)\b\s*/i, 'Restored ');
-          // Cut at the first sentence boundary so a long, multi-clause
-          // commit explanation doesn't read as one run-on changelog line.
-          const firstSentence = msg.match(/^[^.!?]*[.!?]/);
-          if (firstSentence && firstSentence[0].length > 20) msg = firstSentence[0].trim();
-          // Hard safety cap, but on a word boundary with an ellipsis -
-          // never mid-sentence with a dangling dash like before.
-          if (msg.length > 140) {
-            msg = msg.slice(0, 140).replace(/\s+\S*$/, '') + '…';
+            .replace(/^Fix\b\s*/i, 'Fixed ')
+            .replace(/^Add\b\s*/i, 'Added ')
+            .replace(/^Remove\b\s*/i, 'Removed ')
+            .replace(/^Update\b\s*/i, 'Updated ')
+            .replace(/^Build\b\s*/i, 'Added ')
+            .replace(/^Make\b\s*/i, 'Improved ')
+            .replace(/^Rebuild\b\s*/i, 'Improved ')
+            .replace(/^Restore\b\s*/i, 'Restored ');
+
+          // Hard cap at 160 chars on a word boundary - generous enough that
+          // a well-written changelog line never hits it, but prevents runaway
+          // entries if someone forgets to write a changelog: line and the raw
+          // commit subject is very long.
+          if (msg.length > 160) {
+            msg = msg.slice(0, 160).replace(/\s+\S*$/, '') + '…';
           }
 
           const newEntry = `  { app:"${app}", tag:"${tag}", color:"${color}", date:"${date}", items:["${msg}"] },\n`;
@@ -69,17 +65,18 @@ jobs:
           let content = fs.readFileSync('app/page.js', 'utf8');
           content = content.replace('const CHANGELOG = [\n', `const CHANGELOG = [\n${newEntry}`);
 
-          // Keep only 10 entries
+          // Keep only 15 entries (increased from 10 since we now have show/hide)
           const m = content.match(/const CHANGELOG = \[([\s\S]*?)\];/);
           if (m) {
             const entries = m[1].split(/(?<=\}),\n  (?=\{)/).filter(e => e.trim());
-            if (entries.length > 10) {
-              const trimmed = entries.slice(0, 10).join(',\n  ');
+            if (entries.length > 15) {
+              const trimmed = entries.slice(0, 15).join(',\n  ');
               content = content.replace(/const CHANGELOG = \[[\s\S]*?\];/, `const CHANGELOG = [\n  ${trimmed}\n];`);
             }
           }
           fs.writeFileSync('app/page.js', content);
           console.log(`Updated: ${app} — ${msg}`);
+
           JS
       - name: Commit and push
         run: |
