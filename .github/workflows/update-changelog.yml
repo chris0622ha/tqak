@@ -84,4 +84,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git add app/page.js
           git diff --staged --quiet || git commit -m "changelog: ${{ github.event.client_payload.app }} — ${{ github.event.client_payload.message }}"
-          git push
+          # Retry up to 3 times with a pull-rebase before each attempt,
+          # since two workflows (AccuratKey + TrivQuic) can run simultaneously
+          # and the second push gets rejected if the first already landed.
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 3))
+          done
