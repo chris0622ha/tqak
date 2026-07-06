@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach not working - embed key directly since NEXT_PUBLIC_ env var was stripped by Vercel Sens"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Trigger rebuild to bake in NEXT_PUBLIC_GEMINI_KEY env var"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Removed the next-line preview showing as a confusing faint sentence above the actual text being typed"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Coach to fail screen too, not just result screen"] },
