@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed feedback reply not reaching user, daily challenge not changing, Word Rain speed every 5 words"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Added debug message to AI Coach so we can see what's failing on mobile"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed AI Coach flash - move cache and fetch outside component so they survive unmount/remount"] },
