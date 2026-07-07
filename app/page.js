@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Improved AI Coach fallback tips actually useful - specific to level, accuracy, WPM, and worst keys"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach API route - use GEMINI_KEY server var since edge runtime doesn't reliably get NEXT_PUBLIC_"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing coachCache and inFlight declarations"] },
@@ -270,10 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Typing Coach - personalized feedback after every level using Gemini Flash"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 1, 2026", items:["Fixed maintenance flash, analytics level-1, Synonyms/Antonyms validation, Roulette spin sound, remove "] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed Start Game button doing nothing, fix content being smaller on non-map tabs"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Removed Mad Libs, remove answer spoilers from Synonyms and Antonyms"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Added owner-only bypass button on maintenance screen for live testing"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed Start Game button doing nothing, fix content being smaller on non-map tabs"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
