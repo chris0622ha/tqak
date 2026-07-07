@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach disappearing - catch and error paths now always return a fallback tip instead of null"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing return statement in AICoach"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["AI Coach: always show a tip (fallback if Gemini fails), fix safety block handling"] },
@@ -270,10 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Added owner-only bypass button on maintenance screen for live testing"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed direct game URLs landing on the level map instead of the actual game"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed /games/{id} 404ing for new games, and add missing /play routes for all games"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed sound purchases silently failing - patchProfile is not defined"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed Roulette: stale game list and fake spin animation"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed /games/{id} 404ing for new games, and add missing /play routes for all games"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
