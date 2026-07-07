@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Force rebuild to bake in new NEXT_PUBLIC_GEMINI_KEY (accuratkey project)"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach model name - gemini-1.5-flash doesn't exist on this API key, use gemini-2.0-flash"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Removed email from admin panel entirely, fix reply to feedback"] },
@@ -270,8 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Wildcard Words - the randomness lives in the typing task itself"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Memory Edit - a genuinely different memory mechanic"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Added Speed Surge II - a new 12th section, levels 171-180"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Fixed the changelog feed cutting off mid-sentence, removed an inaccurate Pomodoro mention from help docs"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 26, 2026", items:["Added Speed Surge II - a new 12th section, levels 171-180"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
