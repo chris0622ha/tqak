@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Added logging to coach route to diagnose Gemini response"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Trigger rebuild to pick up GEMINI_KEY env var"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Improved AI Coach fallback tips actually useful - specific to level, accuracy, WPM, and worst keys"] },
@@ -270,10 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Coach to fail screen too, not just result screen"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed feedback screenshots not showing in admin panel, fix reply to feedback"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Typing Coach - personalized feedback after every level using Gemini Flash"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 1, 2026", items:["Fixed maintenance flash, analytics level-1, Synonyms/Antonyms validation, Roulette spin sound, remove "] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed Start Game button doing nothing, fix content being smaller on non-map tabs"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Typing Coach - personalized feedback after every level using Gemini Flash"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
