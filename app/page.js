@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Trigger rebuild to pick up GEMINI_KEY env var"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Improved AI Coach fallback tips actually useful - specific to level, accuracy, WPM, and worst keys"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach API route - use GEMINI_KEY server var since edge runtime doesn't reliably get NEXT_PUBLIC_"] },
