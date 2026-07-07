@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jul 7, 2026", items:["Fixed badge cron Unauthorized - CRON_SECRET not set in Vercel so auth always fails"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Log Gemini response to debug no tip returned"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed feedback reply not reaching user, daily challenge not changing, Word Rain speed every 5 words"] },
