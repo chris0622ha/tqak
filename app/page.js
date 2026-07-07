@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing return statement in AICoach"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["AI Coach: always show a tip (fallback if Gemini fails), fix safety block handling"] },
   { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jul 7, 2026", items:["Fixed badge cron Unauthorized - CRON_SECRET not set in Vercel so auth always fails"] },
