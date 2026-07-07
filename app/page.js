@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Log Gemini response to debug no tip returned"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed feedback reply not reaching user, daily challenge not changing, Word Rain speed every 5 words"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Added debug message to AI Coach so we can see what's failing on mobile"] },
@@ -270,10 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed Roulette: stale game list and fake spin animation"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 28, 2026", items:["Fixed crash in admin analytics tab - failStats and failStatsLoading were used throughout via setFailSt"] },
   
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 27, 2026", items:["Added a Wrong Answers setting to Solo mode - Count (default, wrong answers reset streak and cost point"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Freestyle - genuinely open-ended creative writing, validated against the real rhyme dictionary"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 27, 2026", items:["Added Wildcard Words - the randomness lives in the typing task itself"] }
+  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jun 27, 2026", items:["Added a Wrong Answers setting to Solo mode - Count (default, wrong answers reset streak and cost point"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
