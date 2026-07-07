@@ -239,6 +239,7 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed AI Coach flash - move cache and fetch outside component so they survive unmount/remount"] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Force rebuild to bake in new NEXT_PUBLIC_GEMINI_KEY (accuratkey project)"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach model name - gemini-1.5-flash doesn't exist on this API key, use gemini-2.0-flash"] },
