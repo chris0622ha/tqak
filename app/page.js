@@ -239,6 +239,8 @@ const TQ_EFFECTS = [
 
 // ── Changelog ─────────────────────────────────────────────────────────────
 const CHANGELOG = [
+  
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing coachCache and inFlight declarations"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed AI Coach CORS - route Gemini calls through server-side /api/coach instead of calling googleapis."] },
   
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach disappearing - catch and error paths now always return a fallback tip instead of null"] },
@@ -270,10 +272,7 @@ const CHANGELOG = [
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed Start Game button doing nothing, fix content being smaller on non-map tabs"] },
   { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Removed Mad Libs, remove answer spoilers from Synonyms and Antonyms"] },
   
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Added owner-only bypass button on maintenance screen for live testing"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed direct game URLs landing on the level map instead of the actual game"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Fixed /games/{id} 404ing for new games, and add missing /play routes for all games"] }
+  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jun 30, 2026", items:["Added owner-only bypass button on maintenance screen for live testing"] }
 ];
 
 // ── Main ──────────────────────────────────────────────────────────────────
