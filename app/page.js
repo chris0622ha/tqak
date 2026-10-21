@@ -237,52 +237,10 @@ const TQ_EFFECTS = [
   {name:"zoom",color:"#818cf8",css:s=>`@keyframes __zoom{0%{transform:scale(1)}100%{transform:scale(1.5)}} ${s}{animation:__zoom 3s ease-in forwards;}`},
 ];
 
-// ── Changelog ─────────────────────────────────────────────────────────────
-const CHANGELOG = [
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Added logging to coach route to diagnose Gemini response"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Trigger rebuild to pick up GEMINI_KEY env var"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Improved AI Coach fallback tips actually useful - specific to level, accuracy, WPM, and worst keys"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach API route - use GEMINI_KEY server var since edge runtime doesn't reliably get NEXT_PUBLIC_"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing coachCache and inFlight declarations"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed AI Coach CORS - route Gemini calls through server-side /api/coach instead of calling googleapis."] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed coach disappearing - catch and error paths now always return a fallback tip instead of null"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed missing return statement in AICoach"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["AI Coach: always show a tip (fallback if Gemini fails), fix safety block handling"] },
-  { app:"TrivQuic", tag:"trivquic", color:"#f59e0b", date:"Jul 7, 2026", items:["Fixed badge cron Unauthorized - CRON_SECRET not set in Vercel so auth always fails"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Log Gemini response to debug no tip returned"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed feedback reply not reaching user, daily challenge not changing, Word Rain speed every 5 words"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Added debug message to AI Coach so we can see what's failing on mobile"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Fixed AI Coach flash - move cache and fetch outside component so they survive unmount/remount"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 7, 2026", items:["Force rebuild to bake in new NEXT_PUBLIC_GEMINI_KEY (accuratkey project)"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach model name - gemini-1.5-flash doesn't exist on this API key, use gemini-2.0-flash"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Removed email from admin panel entirely, fix reply to feedback"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach flash/disappear, daily challenge showing wrong level name, admin email exposure"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed AI Coach not working - embed key directly since NEXT_PUBLIC_ env var was stripped by Vercel Sens"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Trigger rebuild to bake in NEXT_PUBLIC_GEMINI_KEY env var"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Removed the next-line preview showing as a confusing faint sentence above the actual text being typed"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Coach to fail screen too, not just result screen"] },
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Fixed feedback screenshots not showing in admin panel, fix reply to feedback"] },
-  
-  { app:"AccuratKey", tag:"accuratkey", color:"#7c6af7", date:"Jul 6, 2026", items:["Added AI Typing Coach - personalized feedback after every level using Gemini Flash"] }
-];
-
 // ── Main ──────────────────────────────────────────────────────────────────
 export default function Home() {
-  const [filter,setFilter]=useState("all");
-  const [showAllChangelog,setShowAllChangelog]=useState(false);
   const [scrollY,setScrollY]=useState(0);
   useEffect(()=>{const f=()=>setScrollY(window.scrollY);window.addEventListener("scroll",f,{passive:true});return()=>window.removeEventListener("scroll",f);},[]);
-  const filteredFull=filter==="all"?CHANGELOG:CHANGELOG.filter(e=>e.tag===filter);
-  const filtered=showAllChangelog?filteredFull:filteredFull.slice(0,3);
 
   return (
     <>
@@ -373,40 +331,6 @@ export default function Home() {
             stats={[{value:38,label:"Games"},{value:10,label:"Categories"},{value:1,suffix:" tap",label:"to answer"}]}
             features={["38 trivia games across Science, History, Pop Culture, Geography and more","Google sign-in with per-UID stats saved in Firebase Firestore","Personal best tracking and profile page","Daily challenge — one new trivia set every day","Global leaderboard by username","Streak multipliers and score tracking"]}
           />
-        </section>
-
-        {/* Changelog */}
-        <section style={{padding:"80px clamp(20px,5vw,80px)",maxWidth:900,margin:"0 auto"}}>
-          <div style={{textAlign:"center",marginBottom:48}}>
-            <div style={{fontSize:11,letterSpacing:3,textTransform:"uppercase",color:"#555",marginBottom:12}}>What's new</div>
-            <h2 style={{fontSize:"clamp(28px,4vw,44px)",fontWeight:900,margin:"0 0 12px",color:"#fff"}}>Changelog</h2>
-            <p style={{color:"#666",fontSize:15}}>Updated every 2 additions across both apps</p>
-          </div>
-          <div style={{display:"flex",gap:8,justifyContent:"center",marginBottom:16}}>
-            {[["all","All"],["accuratkey","AccuratKey"],["trivquic","TrivQuic"]].map(([v,l])=>(
-              <button key={v} onClick={()=>setFilter(v)} style={{padding:"7px 18px",borderRadius:99,border:`1px solid ${filter===v?"#7c6af7":"#1e1e30"}`,background:filter===v?"#7c6af722":"transparent",color:filter===v?"#a78bfa":"#666",fontSize:12,fontWeight:700,cursor:"pointer",transition:"all .2s",letterSpacing:.5}}>{l}</button>
-            ))}
-          </div>
-          <div style={{display:"flex",justifyContent:"center",marginBottom:40}}>
-            <button onClick={()=>setShowAllChangelog(s=>!s)} style={{padding:"6px 16px",borderRadius:99,border:"1px solid #1e1e30",background:"transparent",color:"#555",fontSize:11,fontWeight:700,cursor:"pointer",transition:"all .2s",letterSpacing:.5}}>
-              {showAllChangelog?"Show Past 3":`Show All (${filteredFull.length})`}
-            </button>
-          </div>
-          <div style={{display:"flex",flexDirection:"column",gap:16}}>
-            {filtered.map((e,i)=>(
-              <div key={i} style={{background:"#0d0d1a",border:`1px solid ${e.color}33`,borderLeft:`3px solid ${e.color}`,borderRadius:12,padding:"20px 24px",transition:"transform .2s,box-shadow .2s"}} onMouseEnter={x=>{x.currentTarget.style.transform="translateX(4px)";x.currentTarget.style.boxShadow=`0 0 24px ${e.color}18`;}} onMouseLeave={x=>{x.currentTarget.style.transform="translateX(0)";x.currentTarget.style.boxShadow="none";}}>
-                <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:14}}>
-                  <span style={{background:e.color+"22",color:e.color,fontSize:10,fontWeight:700,padding:"3px 10px",borderRadius:99,letterSpacing:1,textTransform:"uppercase"}}>{e.app}</span>
-                  <span style={{color:"#444",fontSize:12,fontFamily:"monospace"}}>{e.date}</span>
-                </div>
-                <ul style={{margin:0,padding:0,listStyle:"none",display:"flex",flexDirection:"column",gap:7}}>
-                  {e.items.map((item,j)=>(
-                    <li key={j} style={{display:"flex",alignItems:"flex-start",gap:10}}>{Ico.dot(e.color)}<span style={{color:"#bbb",fontSize:14,lineHeight:1.5}}>{item}</span></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
         </section>
 
         {/* Footer */}
