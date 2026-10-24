@@ -9,6 +9,13 @@ const F = "'Manrope', system-ui, sans-serif";
 const inp = { width: "100%", boxSizing: "border-box", padding: "12px 14px", border: `2px solid ${INK}`, borderRadius: 12, fontSize: 16, fontFamily: F, background: "#fff", marginTop: 6 };
 const btn = (bg, fg) => ({ width: "100%", padding: "13px", border: `2px solid ${INK}`, borderRadius: 999, background: bg, color: fg, fontWeight: 800, fontSize: 15, fontFamily: F, cursor: "pointer", marginTop: 12 });
 
+// Undo a sign-up that couldn't be completed. Only a brand-new login is deleted; an existing account is just signed out.
+const undo = async (user) => {
+  const fresh = user?.metadata?.creationTime && Date.now() - new Date(user.metadata.creationTime).getTime() < 120000;
+  if (fresh) { try { await deleteUser(user); return; } catch {} }
+  await signOut(auth).catch(() => {});
+};
+
 export default function Login() {
   const [mode, setMode] = useState("in");
   const [email, setEmail] = useState("");
@@ -36,19 +43,21 @@ export default function Login() {
           setBusy(false); return;
         }
       }
-      if (up && kind === "me") {
-        try { await setDoc(doc(db, "accounts", cred.user.uid), { email: cred.user.email, createdAt: serverTimestamp(), source: "tqak" }, { merge: true }); }
-        catch { try { await deleteUser(cred.user); } catch { await signOut(auth).catch(() => {}); } setMsg("We couldn't finish creating your account. Please try again later."); setBusy(false); return; }
-      }
-      if (up && kind === "child") {
-        // Record the parent's declaration on the ACCOUNT. If we can't save it, undo the sign-up
-        // so a child account is never left without its restrictions.
-        try {
-          await setDoc(doc(db, "accounts", cred.user.uid), { email: cred.user.email, createdAt: serverTimestamp(), childUse: true, childUseDeclaredAt: serverTimestamp(), childUseSource: "tqak" }, { merge: true });
-        } catch (err) {
-          try { await deleteUser(cred.user); } catch { await signOut(auth).catch(() => {}); }
-          setMsg("We couldn't save the child-account setting, so no account was created. Please try again later.");
-          setBusy(false); return;
+      if (up) {
+        // Never overwrite an account that already exists.
+        let ex = null; try { ex = await getDoc(doc(db, "accounts", cred.user.uid)); } catch { await undo(cred.user); setMsg("We couldn't finish creating your account. Please try again later."); setBusy(false); return; }
+        if (ex.exists()) {
+          if (kind === "child" && !ex.data().childUse) { await signOut(auth).catch(() => {}); setMsg("That email already has a regular account, so it can't be made a child account. Use a different parent email."); setBusy(false); return; }
+        } else {
+          try {
+            await setDoc(doc(db, "accounts", cred.user.uid), kind === "child"
+              ? { email: cred.user.email, createdAt: serverTimestamp(), childUse: true, childUseDeclaredAt: serverTimestamp(), childUseSource: "tqak" }
+              : { email: cred.user.email, createdAt: serverTimestamp(), source: "tqak" });
+          } catch {
+            await undo(cred.user);
+            setMsg("We couldn't save the account, so nothing was created. Please try again later.");
+            setBusy(false); return;
+          }
         }
       }
       window.location.href = "/account";
