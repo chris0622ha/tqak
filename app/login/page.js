@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, deleteUser } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, deleteUser, sendSignInLinkToEmail } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../lib/firebase";
 
@@ -73,24 +73,37 @@ export default function Login() {
           <>
             <div style={{ fontWeight: 800, fontSize: 14, marginBottom: 6 }}>Who is this account for?</div>
             <div style={{ display: "flex", gap: 8, marginBottom: 10 }}>
-              {[["me", "Me (adult)"], ["child", "My child"]].map(([k, l]) => (
+              {[["me", "Me"], ["child", "My child"], ["kid", "I'm a kid"]].map(([k, l]) => (
                 <button key={k} type="button" onClick={() => { setKind(k); setAdult(false); }}
                   style={{ flex: 1, padding: "10px", borderRadius: 12, border: `2px solid ${INK}`, background: kind === k ? ACC : "#fff", color: kind === k ? "#fff" : INK, fontWeight: 800, fontFamily: F, cursor: "pointer" }}>{l}</button>
               ))}
             </div>
+            {kind === "kid" && (
+              <div style={{ background: "#fff", border: `2px dashed ${INK}`, borderRadius: 12, padding: 12, fontSize: 14 }}>
+                <b>Ask a parent to approve.</b> Type your <u>parent's</u> email. We'll send them one message to approve a restricted account, and we don't keep the address. Don't type your own email.
+                <input style={inp} type="email" placeholder="Parent's email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <button type="button" disabled={busy} style={btn(ACC, "#fff")} onClick={async () => {
+                  setMsg(""); setBusy(true);
+                  try { await sendSignInLinkToEmail(auth, email.trim(), { url: window.location.origin + "/approve", handleCodeInApp: true }); setMsg("✅ Sent! Ask your parent to open the email and approve."); }
+                  catch { setMsg("Couldn't send that. Check the email and try again."); }
+                  setBusy(false);
+                }}>Email my parent</button>
+              </div>
+            )}
             {kind === "child" && (
               <div style={{ background: "#fff", border: `2px dashed ${INK}`, borderRadius: 12, padding: 10, fontSize: 13, marginBottom: 8 }}>
                 <b>Restricted child account.</b> Use <u>your own</u> email, not your child's. We only collect the parent's email. The child gets no username, no leaderboards, no multiplayer, no friends or chat and no photo uploads, and their progress stays on the device.
               </div>
             )}
-            <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, marginBottom: 6 }}>
+            {kind !== "kid" && <label style={{ display: "flex", gap: 10, alignItems: "flex-start", fontSize: 14, marginBottom: 6 }}>
               <input type="checkbox" checked={adult} onChange={(e) => setAdult(e.target.checked)} style={{ marginTop: 4 }} />
               {kind === "child"
                 ? <span>I am this child's parent or legal guardian. This account will be used by a minor, and I understand it will be restricted. I have read the <a href="/privacy" style={{ color: ACC }}>Privacy page</a>.</span>
                 : <span>I am 13 or older (if under 18, with a parent's permission). I have read the <a href="/privacy" style={{ color: ACC }}>Privacy page</a>.</span>}
-            </label>
+            </label>}
           </>
         )}
+        {!(up && kind === "kid") && (<>
         <button disabled={busy} style={btn("#fff", INK)} onClick={() => run(() => signInWithPopup(auth, new GoogleAuthProvider()))}>Continue with Google</button>
         <div style={{ textAlign: "center", margin: "14px 0 0", fontSize: 13, color: "#4a4458" }}>or use email</div>
         <label style={{ display: "block", marginTop: 8, fontWeight: 700, fontSize: 13 }}>Email
@@ -109,6 +122,7 @@ export default function Login() {
             Forgot password?
           </button>
         )}
+        </>)}
         {msg && <p role="alert" style={{ color: "#b3261e", fontWeight: 700, marginBottom: 0 }}>{msg}</p>}
       </div>
       <p style={{ textAlign: "center", marginTop: 18 }}>
