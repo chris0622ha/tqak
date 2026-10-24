@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../../lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "../../lib/firebase";
 
 const INK = "#17141f", CARD = "#fffaf1";
 const F = "'Manrope', system-ui, sans-serif";
@@ -10,7 +11,8 @@ const link = (bg, fg) => ({ display: "block", textAlign: "center", padding: "13p
 
 export default function Account() {
   const [user, setUser] = useState(undefined);
-  useEffect(() => onAuthStateChanged(auth, (u) => setUser(u || null)), []);
+  const [child, setChild] = useState(false);
+  useEffect(() => onAuthStateChanged(auth, async (u) => { setUser(u || null); if (u) { try { const s = await getDoc(doc(db, "accounts", u.uid)); setChild(!!(s.exists() && s.data().childUse)); } catch {} } }), []);
   return (
     <main style={{ fontFamily: F, color: INK, maxWidth: 480, margin: "0 auto", padding: "40px 24px 80px" }}>
       <a href="/" style={{ color: INK, fontWeight: 800, textDecoration: "none" }}>← tqak</a>
@@ -22,6 +24,7 @@ export default function Account() {
           <div style={card}>
             <div style={{ fontSize: 13, fontWeight: 700 }}>Signed in as</div>
             <div style={{ fontSize: 18, fontWeight: 800, wordBreak: "break-all" }}>{user.email}</div>
+            {child && <p style={{ fontSize: 13, fontWeight: 700, marginBottom: 0 }}>🛡️ Restricted child account: no username, leaderboards, multiplayer, friends or chat. Progress stays on the device.</p>}
             <p style={{ fontSize: 13, color: "#4a4458", marginBottom: 0 }}>This is the same account you use in AccuratKey — sign in there with the same method and your data is waiting. TrivQuic keeps its own separate sign-in.</p>
           </div>
           <div style={card}>
