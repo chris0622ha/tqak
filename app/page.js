@@ -154,6 +154,7 @@ export default function Home() {
             <a className="nl" href="#accuratkey">AccuratKey</a>
             <a className="nl" href="#trivquic">TrivQuic</a>
             <a className="nl" href="/privacy">Privacy</a>
+            <a className="nl" href="/login">Sign in</a>
           </nav>
         </div>
       </header>
@@ -192,7 +193,7 @@ export default function Home() {
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "56px 24px 36px" }}>
           <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(56px,14vw,168px)", lineHeight: 0.9, letterSpacing: -4 }}>tqak<span style={{ color: TQ.color }}>.</span></div>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginTop: 32, fontFamily: MONO, fontSize: 13 }}>
-            <span>© tqak — no accounts, no tracking</span>
+            <span>© tqak — no ads, no tracking</span>
             <span style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
               <a href={AK.url} target="_blank" rel="noopener noreferrer" style={{ color: PAPER }}>AccuratKey</a>
               <a href={TQ.url} target="_blank" rel="noopener noreferrer" style={{ color: PAPER }}>TrivQuic</a>
