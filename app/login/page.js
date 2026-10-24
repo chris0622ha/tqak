@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut, deleteUser } from "firebase/auth";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../lib/firebase";
@@ -18,6 +18,7 @@ export default function Login() {
   const [msg, setMsg] = useState("");
   const [busy, setBusy] = useState(false);
   const up = mode === "up";
+  useEffect(() => { try { if (new URLSearchParams(window.location.search).get("mode") === "up") setMode("up"); } catch {} }, []);
 
   const run = async (fn) => {
     setMsg("");
@@ -25,11 +26,25 @@ export default function Login() {
     setBusy(true);
     try {
       const cred = await fn();
+      if (!up) {
+        // Accounts are created here on tqak. A sign-in with no account record = never signed up.
+        let ex = null; try { ex = await getDoc(doc(db, "accounts", cred.user.uid)); } catch {}
+        if (ex && !ex.exists()) {
+          const fresh = cred.user.metadata?.creationTime && Date.now() - new Date(cred.user.metadata.creationTime).getTime() < 120000;
+          if (fresh) { try { await deleteUser(cred.user); } catch { await signOut(auth).catch(() => {}); } } else { await signOut(auth).catch(() => {}); }
+          setMsg("No account found for that sign-in. Choose \"Create an account\" below to sign up first.");
+          setBusy(false); return;
+        }
+      }
+      if (up && kind === "me") {
+        try { await setDoc(doc(db, "accounts", cred.user.uid), { email: cred.user.email, createdAt: serverTimestamp(), source: "tqak" }, { merge: true }); }
+        catch { try { await deleteUser(cred.user); } catch { await signOut(auth).catch(() => {}); } setMsg("We couldn't finish creating your account. Please try again later."); setBusy(false); return; }
+      }
       if (up && kind === "child") {
         // Record the parent's declaration on the ACCOUNT. If we can't save it, undo the sign-up
         // so a child account is never left without its restrictions.
         try {
-          await setDoc(doc(db, "accounts", cred.user.uid), { email: cred.user.email, childUse: true, childUseDeclaredAt: serverTimestamp(), childUseSource: "tqak" }, { merge: true });
+          await setDoc(doc(db, "accounts", cred.user.uid), { email: cred.user.email, createdAt: serverTimestamp(), childUse: true, childUseDeclaredAt: serverTimestamp(), childUseSource: "tqak" }, { merge: true });
         } catch (err) {
           try { await deleteUser(cred.user); } catch { await signOut(auth).catch(() => {}); }
           setMsg("We couldn't save the child-account setting, so no account was created. Please try again later.");

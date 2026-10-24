@@ -154,7 +154,7 @@ export default function Home() {
             <a className="nl" href="#accuratkey">AccuratKey</a>
             <a className="nl" href="#trivquic">TrivQuic</a>
             <a className="nl" href="/privacy">Privacy</a>
-            <a className="nl" href="/login">Sign in</a>
+            <a className="nl" href="/account">Account</a>
           </nav>
         </div>
       </header>
