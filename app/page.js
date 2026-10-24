@@ -113,7 +113,7 @@ function Showcase({ id, app, f, flip }) {
               {load ? (
                 <div style={{ position: "relative", height: "calc(100% - 40px)" }}>
                   {!ok && <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: MONO, fontSize: 13 }}>Loading…</div>}
-                  <iframe src={app.url + "?embed=1"} title={app.name} onLoad={() => setOk(true)} style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
+                  <iframe referrerPolicy="no-referrer" loading="lazy" src={app.url + "?embed=1"} title={app.name} onLoad={() => setOk(true)} style={{ width: "100%", height: "100%", border: 0, display: "block" }} />
                 </div>
               ) : (
                 <button onClick={() => setLoad(true)} style={{ all: "unset", cursor: "pointer", boxSizing: "border-box", width: "100%", height: "calc(100% - 40px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14, textAlign: "center" }} aria-label={`Load a live preview of ${app.name}`}>
@@ -153,7 +153,7 @@ export default function Home() {
           <nav style={{ display: "flex", gap: 4, alignItems: "center" }}>
             <a className="nl" href="#accuratkey">AccuratKey</a>
             <a className="nl" href="#trivquic">TrivQuic</a>
-            <a className="nl" href="https://github.com/chris0622ha" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a className="nl" href="/privacy">Privacy</a>
           </nav>
         </div>
       </header>
@@ -192,11 +192,11 @@ export default function Home() {
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "56px 24px 36px" }}>
           <div style={{ fontFamily: SERIF, fontWeight: 800, fontSize: "clamp(56px,14vw,168px)", lineHeight: 0.9, letterSpacing: -4 }}>tqak<span style={{ color: TQ.color }}>.</span></div>
           <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginTop: 32, fontFamily: MONO, fontSize: 13 }}>
-            <span>Made by chris0622ha</span>
+            <span>© tqak — no accounts, no tracking</span>
             <span style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
               <a href={AK.url} target="_blank" rel="noopener noreferrer" style={{ color: PAPER }}>AccuratKey</a>
               <a href={TQ.url} target="_blank" rel="noopener noreferrer" style={{ color: PAPER }}>TrivQuic</a>
-              <a href="https://github.com/chris0622ha" target="_blank" rel="noopener noreferrer" style={{ color: PAPER }}>GitHub</a>
+              <a href="/privacy" style={{ color: PAPER }}>Privacy</a>
             </span>
           </div>
         </div>
